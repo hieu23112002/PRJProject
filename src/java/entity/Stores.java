@@ -9,14 +9,15 @@ package entity;
  * @author HIEUPC
  */
 public class Stores {
+
     private int store_id;
     private String store_name,
-                   phone,
-                   email,
-                   street,
-                   city,
-                   state,
-                   zip_code;
+            phone,
+            email,
+            street,
+            city,
+            state,
+            zip_code;
 
     public Stores() {
     }
@@ -100,5 +101,5 @@ public class Stores {
     public String toString() {
         return "Stores{" + "store_id=" + store_id + ", store_name=" + store_name + ", phone=" + phone + ", email=" + email + ", street=" + street + ", city=" + city + ", state=" + state + ", zip_code=" + zip_code + '}';
     }
-    
+
 }

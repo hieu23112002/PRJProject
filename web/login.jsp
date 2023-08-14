@@ -32,7 +32,7 @@
                     <input type="text" placeholder="username"/>
                     <input type="text" placeholder="password"/>
                     <button>login</button>
-                    <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
+                    <p class="message">Not registered? <a href="signup.jsp">Create an account</a></p>
                 </form>
             </div>
         </div>

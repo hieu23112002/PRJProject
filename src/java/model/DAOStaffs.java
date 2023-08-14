@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  * @author HIEUPC
  */
 public class DAOStaffs extends DBConnect {
-    
-    public boolean loginStaffs(String username,String password){
+
+    public boolean loginStaffs(String username, String password) {
         boolean flag = false;
         String sql = "select * from Staffs where email = ? and phone = ?";
         try {
@@ -27,13 +27,13 @@ public class DAOStaffs extends DBConnect {
             pre.setString(1, username);
             pre.setString(2, password);
             ResultSet rs = pre.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 flag = true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomers.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return flag;
     }
 
@@ -122,7 +122,7 @@ public class DAOStaffs extends DBConnect {
     public int deleteStaff(int id) {
         int n = 0;
         String sql = "DELETE FROM [dbo].[staffs]\n"
-                + "      WHERE [staff_id] = "+id;
+                + "      WHERE [staff_id] = " + id;
         try {
             Statement state = conn.createStatement();
             n = state.executeUpdate(sql);
@@ -131,14 +131,14 @@ public class DAOStaffs extends DBConnect {
         }
         return 0;
     }
-    
-    public Vector searchByNameStaff(String name){
+
+    public Vector searchByNameStaff(String name) {
         Vector<Staffs> vector = new Vector<Staffs>();
         String sql = "select * from Customers where first_name LIKE '%" + name + "%' OR last_name LIKE '%" + name + "%'";
         ResultSet rs = getData(sql);
         try {
-            while(rs.next()){
-                int staff_id = rs.getInt(1);                
+            while (rs.next()) {
+                int staff_id = rs.getInt(1);
                 String fname = rs.getString(2);
                 String lname = rs.getString(3);
                 String email = rs.getString(4);
@@ -154,18 +154,16 @@ public class DAOStaffs extends DBConnect {
         }
         return vector;
     }
-    
-    
-    
-    public void displayAll(){
-        String sql ="select * from Staffs";
+
+    public void displayAll() {
+        String sql = "select * from Staffs";
         try {
-            Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = state.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 //dataType varName = rs.getDataType(fieldName|index);
                 //int id = rs.getInt("product_id");
-                int staff_id = rs.getInt(1);                
+                int staff_id = rs.getInt(1);
                 String fname = rs.getString(2);
                 String lname = rs.getString(3);
                 String email = rs.getString(4);
@@ -173,14 +171,13 @@ public class DAOStaffs extends DBConnect {
                 int active = rs.getInt(6);
                 int store_id = rs.getInt(7);
                 int manager_id = rs.getInt(8);
-                
-                
+
                 Staffs st = new Staffs(staff_id, fname, lname, email, phone, active, store_id, manager_id);
                 System.out.println(st);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }

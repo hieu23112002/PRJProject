@@ -21,9 +21,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Signup</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home.jsp">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.jsp">Signup</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -52,7 +52,7 @@
                         Name
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="loginRegisterDropdown">
-                        <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
                 </div>

@@ -57,28 +57,28 @@ public class DAOStocks extends DBConnect {
     public int deleteStocks(int id) {
         int n = 0;
         String sql = "DELETE FROM [dbo].[stocks]\n"
-                + "      WHERE [store_id] ="+id;
+                + "      WHERE [store_id] =" + id;
         Statement st;
         try {
             st = conn.createStatement();
             n = st.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(DAOStocks.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         return n;
     }
-    
-    public void displayAll(){
+
+    public void displayAll() {
         String sql = "select * from Stocks";
         try {
-            Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = state.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 //dataType varName = rs.getDataType(fieldName|index);
                 //int id = rs.getInt("product_id");
                 int store_id = rs.getInt(1);
                 int product_id = rs.getInt(2);
-                int quantity = rs.getInt(3);         
+                int quantity = rs.getInt(3);
                 Stocks sto = new Stocks(store_id, product_id, quantity);
                 System.out.println(sto);
             }
