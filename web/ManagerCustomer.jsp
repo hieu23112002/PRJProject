@@ -12,7 +12,10 @@
         <link href="css/manager.css" rel="stylesheet" type="text/css" />
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
         <style>
-
+            img {
+                width: 200px;
+                height: 120px;
+            }
         </style>
 
     <body>
@@ -81,26 +84,22 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Manage <b>Customer</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
-                                    class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i
-                                    class="material-icons">&#xE15C;</i> <span>Delete</span></a>
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>
-
+                            <th>                           
                             </th>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
+                            <th>Email</th>
+                            <th>Street</th>
+                            <th>City</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -109,12 +108,13 @@
                         <tr>
                             <td>
                             </td>
-                            <td>ao</td>
-                            <td>quan</td>
+                            <td>1</td>
+                            <td>Minh</td>
                             <td>
-                                <img src="">
+                                lekhacbeo@fpt.edu.vn
                             </td>
                             <td>1000</td>
+                            <td>beo</td>
                             <td>
                                 <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
                                                                                                  data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -144,11 +144,11 @@
                                     <input name="name" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Image</label>
+                                    <label>Email</label>
                                     <input name="image" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Price</label>
+                                    <label>sTRES</label>
                                     <input name="price" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">

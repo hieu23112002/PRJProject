@@ -7,13 +7,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" />
     <link href="css/detail.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
     <title>Document</title>
     
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Clothes</a>
+            <a class="navbar-brand" href="home.jsp">Clothes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -53,6 +54,8 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="loginRegisterDropdown">
                         <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
+                        <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
+                        <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
                     </ul>
                 </div>
@@ -69,7 +72,7 @@
             width: 250px;
         }
     </style>
-
+    <!-- Header-->  
     <div class="container">
         <div class="col-lg-8 border p-3 main-section bg-white">
             <div class="row hedding m-0 pl-3 pt-0 pb-3">
@@ -119,41 +122,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 text-center pt-3">
-                    <h4>More Product</h4>
-                </div>
-            </div>
-            <div class="row mt-3 p-0 text-center pro-box-section">
-                <div class="col-lg-3 pb-2">
-                    <div class="pro-box border p-0 m-0">
-                        <img src="http://nicesnippets.com/demo/pd-b-image1.jpg">
-                    </div>
-                </div>
-                <div class="col-lg-3 pb-2">
-                    <div class="pro-box border p-0 m-0">
-                        <img src="http://nicesnippets.com/demo/pd-b-images2.jpg">
-                    </div>
-                </div>
-                <div class="col-lg-3 pb-2">
-                    <div class="pro-box border p-0 m-0">
-                        <img src="http://nicesnippets.com/demo/pd-b-images3.jpg">
-                    </div>
-                </div>
-                <div class="col-lg-3 pb-2">
-                    <div class="pro-box border p-0 m-0">
-                        <img src="http://nicesnippets.com/demo/pd-b-images4.jpg">
-                    </div>
-                </div>
-            </div>
+            
         </div>
         
     </div>
+    <!-- Footer-->
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
 </body>
+
 <!-- Footer-->
 
 </html>
