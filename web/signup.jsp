@@ -29,7 +29,7 @@
                     <input type="text" placeholder="Street"/>
                     <input type="text" placeholder="City"/>
                     <button>Signup</button>
-                    <p class="message">Already registered? <a href="login.html">Login</a></p>
+                    <p class="message">Already registered? <a href="login.jsp">Login</a></p>
                 </form>
             </div>
         </div>

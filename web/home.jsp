@@ -92,7 +92,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -117,7 +117,7 @@
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
                         </div>
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -151,7 +151,7 @@
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
                         </div>
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -174,7 +174,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -207,7 +207,7 @@
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
                         </div>
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -230,7 +230,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -255,7 +255,7 @@
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
                         </div>
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
@@ -286,7 +286,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <div class="img-link" onclick="window.location.href='detai.html';">
+                        <div class="img-link" onclick="window.location.href='detai.jsp';">
                             <img class="card-img-top" src="img/a.png" alt="" />
                         </div>
                         <!-- Product details-->
