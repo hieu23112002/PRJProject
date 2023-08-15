@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -12,20 +13,20 @@ import java.util.Vector;
  */
 public class Cart {
 
-    private Vector<Product> products;
+    public ArrayList<Product> products;
 
     public Cart() {
     }
 
-    public Cart(Vector<Product> products) {
+    public Cart(ArrayList<Product> products) {
         this.products = products;
     }
 
-    public Vector<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Vector<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
 

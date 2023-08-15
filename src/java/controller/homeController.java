@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Vector;
 import model.DAOProduct;
 
@@ -30,12 +31,20 @@ public class homeController extends HttpServlet {
         // init session
         HttpSession session = request.getSession();
 
-        // create cart for user
-        
-        Cart cart = (Cart) session.getAttribute("cart");
+        // create cart for user     
+        Cart cart = null;
+        Object o = session.getAttribute("cart");
+        System.out.println(o);
+        if(o != null) {
+            cart = (Cart) o;
+        }
+        else {
+            cart = new Cart();
+        }   
         
         // show number of cart
-        request.setAttribute("numOfCart", cart.getProducts().size());
+        ArrayList<Product> dataCart = cart.getProducts();
+//        System.out.println("datacart size: " + cart.products.size());
         
         
         DAOProduct dao = new DAOProduct();
@@ -45,6 +54,7 @@ public class homeController extends HttpServlet {
         }
         Vector<Product> vector = dao.getAllProduct("select * from Products");
         request.setAttribute("listP", vector);
+//        request.setAttribute("numOfCart", dataCart.size());
         request.setAttribute("caname", caname);
         request.getRequestDispatcher("home.jsp").forward(request, response);
 
