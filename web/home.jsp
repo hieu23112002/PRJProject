@@ -57,7 +57,7 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
-                    <a href="cart.jsp">
+                    <a href="cart">
                         <button class="btn btn-outline-dark ms-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart

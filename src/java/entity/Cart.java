@@ -13,20 +13,21 @@ import java.util.Vector;
  */
 public class Cart {
 
-    public ArrayList<Product> products;
+    public Vector<Product> products;
 
     public Cart() {
+        products = new Vector<>();
     }
 
-    public Cart(ArrayList<Product> products) {
+    public Cart(Vector<Product> products) {
         this.products = products;
     }
 
-    public ArrayList<Product> getProducts() {
+    public Vector<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(Vector<Product> products) {
         this.products = products;
     }
 
@@ -47,12 +48,15 @@ public class Cart {
         }
         return 0;
     }
-
+    
     public void addProductToCart(Product p) {
         if (getProductById(p.getProduct_id()) != null) {
-            getProductById(p.getProduct_id()).setQuantity(getProductById(p.getProduct_id()).getQuantity() + p.getQuantity());
+            getProductById(p.getProduct_id()).setQuantity(getProductById(p.getProduct_id()).getQuantity() + 1);
         } else {
+            p.setQuantity(1);
             products.add(p);
         }
     }
+    
+   
 }

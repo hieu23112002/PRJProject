@@ -8,6 +8,10 @@
         <servlet-name>home</servlet-name>
         <servlet-class>controller.homeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>cartController</servlet-name>
+        <servlet-class>controller.cartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addToCart</servlet-name>
         <url-pattern>/addToCart</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -34,7 +34,6 @@ public class homeController extends HttpServlet {
         // create cart for user     
         Cart cart = null;
         Object o = session.getAttribute("cart");
-        System.out.println(o);
         if(o != null) {
             cart = (Cart) o;
         }
@@ -42,10 +41,9 @@ public class homeController extends HttpServlet {
             cart = new Cart();
         }   
         
-        // show number of cart
-        ArrayList<Product> dataCart = cart.getProducts();
-//        System.out.println("datacart size: " + cart.products.size());
-        
+        // get number of cart
+        request.setAttribute("numOfCart", cart.getProducts().size());   
+        session.setAttribute("cart", cart);
         
         DAOProduct dao = new DAOProduct();
         String caname = request.getParameter("cname");
@@ -54,7 +52,6 @@ public class homeController extends HttpServlet {
         }
         Vector<Product> vector = dao.getAllProduct("select * from Products");
         request.setAttribute("listP", vector);
-//        request.setAttribute("numOfCart", dataCart.size());
         request.setAttribute("caname", caname);
         request.getRequestDispatcher("home.jsp").forward(request, response);
 
