@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,35 +12,26 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.Vector;
+import model.DAOProduct;
 
 /**
  *
  * @author HIEUPC
  */
-@WebServlet(name = "logoutController", urlPatterns = {"/logoutController"})
-public class logoutController extends HttpServlet {
+@WebServlet(name = "categoryController", urlPatterns = {"/categoryController"})
+public class categoryController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(false);
-
-            if (session != null) {
-                session.invalidate(); // Xóa session
-            }
-            response.sendRedirect("homeController");
-        }
+        DAOProduct dao = new DAOProduct();
+        String cname = request.getParameter("cname");
+        Vector<Product> vector = dao.getAllProduct("select * from Products where category_name ='" + cname + "'");
+        request.setAttribute("listP", vector);
+        request.setAttribute("caname", cname);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
+//      /response.sendRedirect("homeController");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

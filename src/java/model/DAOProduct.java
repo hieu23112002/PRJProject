@@ -146,6 +146,29 @@ public class DAOProduct extends DBConnect {// DAO:database access object
         return vector;
     }
     
+    public Vector searchByCName(String Cname){
+        Vector<Product> vector = new Vector<Product>();
+        String sql ="select * from products where category_name  = '" + Cname + "'";
+        ResultSet rs = getData(sql);
+        try {
+            while(rs.next()){
+                //dataType varName = rs.getDataType(fieldName|index);
+                //int id = rs.getInt("product_id");
+                int id = rs.getInt(1);
+                String name1 = rs.getString(2);
+                int year = rs.getInt(3);
+                double price = rs.getDouble(4);
+                String brand = rs.getString(5);
+                String category = rs.getString(6);
+                Product pro = new Product(id, name1, year, price, brand, category);
+                vector.add(pro);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return vector;
+    }
+    
     public Vector searchByID(int id){
         Vector<Product> vector = new Vector<Product>();
         String sql ="select * from Products where product_name = " + id + "";
@@ -172,6 +195,7 @@ public class DAOProduct extends DBConnect {// DAO:database access object
     public Vector getAllProduct(String sql){
         Vector<Product> vector = new Vector<Product>();
         try {
+            
             Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = state.executeQuery(sql);
             while(rs.next()){
@@ -227,7 +251,7 @@ public class DAOProduct extends DBConnect {// DAO:database access object
 //            System.out.println("oke");
 //        }
             //dao.displayAll();
-            Vector<Product> vector = dao.searchByName("Trek 820");
+            Vector<Product> vector = dao.getAllProduct("select * from Products where category_name ='Mountain Bikes'");
             for (Product pro : vector) {
                 System.out.println(pro);
         }

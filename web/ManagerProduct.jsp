@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.DAOProduct,entity.Product,java.sql.ResultSet"%>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="home.jsp">Clothes</a>
+                <a class="navbar-brand" href="homeController">Clothes</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -28,8 +29,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" href="home.jsp">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="homeController">Home</a></li>
+                        <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+                        </c:if>
                         <li class="nav-item"><a class="nav-link" href="signup.jsp">Signup</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -58,13 +61,13 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             <c:choose>
                                 <c:when test="${not empty sessionScope.customer}">
-                                    <p>Welcome, ${sessionScope.customer.getFirst_name()}</p>
+                                    Welcome, ${sessionScope.customer.getFirst_name()}
                                 </c:when>
                                 <c:when test="${not empty sessionScope.staff}">
-                                    <p>Welcome, ${sessionScope.staff.getFirst_name()}</p>
+                                    Welcome, ${sessionScope.staff.getFirst_name()}
                                 </c:when>
                                 <c:otherwise>
-                                    <p>Welcome, Guest!</p>
+                                    Welcome, Guest!
                                 </c:otherwise>
                             </c:choose>
 
@@ -102,8 +105,7 @@
                         <div class="col-sm-6">
                             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
                                     class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i
-                                    class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                            
                         </div>
                     </div>
                 </div>
@@ -142,7 +144,7 @@
                     </tbody>
                 </table>
 
-                <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
+                
 
             </div>
             <!-- add Modal HTML -->

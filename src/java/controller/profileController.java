@@ -72,7 +72,7 @@ public class profileController extends HttpServlet {
         
         Customers cusupdate = new Customers(cus1.getCustomer_id(), fname, lname, phone, email, street, city, state, zip);
         dao.updateCustomers(cusupdate);
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("homeController");
     }
 
     /**

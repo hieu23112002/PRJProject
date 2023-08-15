@@ -88,10 +88,10 @@ public class loginController extends HttpServlet {
         
         if(daocus.loginCustomers(username, password)){
             session.setAttribute("customer",daocus.getCustomers(username));
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("homeController").forward(request, response);
         }else if(daost.loginStaffs(username, password)){
             session.setAttribute("staff",daost.getStaffs(username));
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("homeController").forward(request, response);
         }else{
             request.setAttribute("errorMessage", "Invalid username or password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
