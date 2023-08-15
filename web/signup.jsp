@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.DAOProduct,entity.Product,java.sql.ResultSet"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,13 +42,13 @@
     
     <div class="login-page">
         <div class="form">
-            <form class="login-form">
-                <input type="text" placeholder="Email"/>
-                <input type="text" placeholder="First name"/>
-                <input type="text" placeholder="Last name"/>
-                <input type="text" placeholder="Password"/>
-                <input type="text" placeholder="Street"/>
-                <input type="text" placeholder="City"/>
+            <form action="registerController" class="login-form" method="post">
+                <input type="text" required name="email" placeholder="Email"/>
+                <input type="text" required name="fname" placeholder="First name"/>
+                <input type="text" required name="lname" placeholder="Last name"/>
+                <input type="text" required name="password" placeholder="Password"/>
+                <input type="text"  name="street" placeholder="Street"/>
+                <input type="text"  name="city"  placeholder="City"/>
                 <button>Signup</button>
                 <p class="message">Already registered? <a href="login.jsp">Login</a></p>
             </form>

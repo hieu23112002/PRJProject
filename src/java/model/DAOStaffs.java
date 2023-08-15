@@ -36,6 +36,32 @@ public class DAOStaffs extends DBConnect {
 
         return flag;
     }
+    
+    public Staffs getStaffs(String username){
+        Staffs sta = null;
+        String sql ="select * from Staffs where email = ?";
+        try {
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1, username);
+            ResultSet rs = pre.executeQuery();
+            if(rs.next()){
+                int staff_id = rs.getInt(1);
+                String fname = rs.getString(2);
+                String lname = rs.getString(3);
+                String email = rs.getString(4);
+                String phone = rs.getString(5);
+                int active = rs.getInt(6);
+                int store_id = rs.getInt(7);
+                int manager_id = rs.getInt(8);
+                sta = new Staffs(staff_id, fname, lname, email, phone, active, store_id, manager_id);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOCustomers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return sta;
+    }
+
 
     public int insertStaffs(Staffs st) {
         int n = 0;

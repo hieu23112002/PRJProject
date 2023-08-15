@@ -5,7 +5,6 @@
 package model;
 
 import entity.Customers;
-import entity.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +35,32 @@ public class DAOCustomers extends DBConnect {
         }
         
         return flag;
+    }
+    
+    public Customers getCustomers(String username){
+        Customers cus = null;
+        String sql ="select * from Customers where email = ?";
+        try {
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1, username);
+            ResultSet rs = pre.executeQuery();
+            if(rs.next()){
+                int id = rs.getInt(1);
+                String f_name = rs.getString(2);
+                String l_name = rs.getString(3);
+                String phone = rs.getString(4);
+                String email = rs.getString(5);
+                String street = rs.getString(6);
+                String city = rs.getString(7);
+                String state = rs.getString(8);
+                String zip = rs.getString(9);
+                cus = new Customers(id, f_name, l_name, phone, email, street, city, state, zip);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOCustomers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cus;
     }
 
     public int insertCustomers(Customers cus) {

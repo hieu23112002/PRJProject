@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.DAOProduct,entity.Product,java.sql.ResultSet"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,14 +59,29 @@
                     <div class="dropdown">
                         <button class="btn btn-outline-dark  ms-2 dropdown-toggle" type="button" id="loginRegisterDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            Name
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.customer}">
+                                    <p>Welcome, ${sessionScope.customer.getFirst_name()}</p>
+                                </c:when>
+                                <c:when test="${not empty sessionScope.staff}">
+                                    <p>Welcome, ${sessionScope.staff.getFirst_name()}</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p>Welcome, Guest!</p>
+                                </c:otherwise>
+                            </c:choose>
+
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="loginRegisterDropdown">
-                        <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
-                        <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
-                        <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
-                    </ul>
+                            <c:if test="${not empty sessionScope.customer}">
+                                <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
+                            </c:if>
+                            <c:if test="${not empty sessionScope.staff}">
+                                <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
+                                <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
+                            </c:if>
+                            <li><a class="dropdown-item" href="logoutController">Logout</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
