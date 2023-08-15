@@ -108,11 +108,11 @@
                         <div class="right-side-pro-detail border p-3 m-0">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <span>${pdetail.category_name}</span>
-                                    <p class="m-0 p-0">${pdetail.product_name}</p>
+                                    <span>${pdetail.getCategory_name()}</span>
+                                    <p class="m-0 p-0">${pdetail.getProduct_name()}</p>
                                 </div>
                                 <div class="col-lg-12">
-                                    <p class="m-0 p-0 price-pro">${pdetail.list_price}</p>
+                                    <p class="m-0 p-0 price-pro">${pdetail.getList_price()}</p>
                                     <hr class="p-0 m-0">
                                 </div>
                                 <div class="col-lg-12 pt-2">
