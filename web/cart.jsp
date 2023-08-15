@@ -43,9 +43,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="homeController">Home</a></li>
-                        <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
-                        <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
-                        </c:if>
+                            <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
+                            <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+                            </c:if>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -64,11 +64,11 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
-                    <a href="cart.jsp">
+                    <a href="cart">
                         <button class="btn btn-outline-dark ms-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${numOfCart}</span>
                         </button>
                     </a>
                     <div class="dropdown">
@@ -90,11 +90,11 @@
                         <ul class="dropdown-menu" aria-labelledby="loginRegisterDropdown">
                             <c:if test="${not empty sessionScope.customer}">
                                 <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
-                            </c:if>
-                            <c:if test="${not empty sessionScope.staff}">
+                                </c:if>
+                                <c:if test="${not empty sessionScope.staff}">
                                 <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
                                 <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
-                            </c:if>
+                                </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>
                     </div>
@@ -121,99 +121,133 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-8">
                                 <div class="items">
-                                    <div class="product">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="info">
-                                                    <div class="row">
-                                                        <div class="col-md-5 product-name">
-                                                            <div class="product-name">
-                                                                <a href="#" class="black-text">Lorem Ipsum dolor</a>
-                                                                <div class="product-info">
-                                                                    <div>Display: <span class="value">5 inch</span></div>
-                                                                    <div>RAM: <span class="value">4GB</span></div>
-                                                                    <div>Memory: <span class="value">32GB</span></div>
+                                    <c:forEach items="${listCart}" var="p">
+                                        <div class="product">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="info">
+                                                        <div class="row">
+                                                            <div class="col-md-5 product-name">
+                                                                <div class="product-name">
+                                                                    <a href="#" class="black-text">${p.product_name}</a>
+                                                                    <div class="product-info">
+                                                                        <div>Display: <span class="value">5 inch</span></div>
+                                                                        <div>RAM: <span class="value">4GB</span></div>
+                                                                        <div>Memory: <span class="value">32GB</span></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4 quantity">
-                                                            <label for="quantity">Quantity:</label>
-                                                            <input id="quantity" type="text"
-                                                                   class="form-control quantity-input">
-                                                        </div>
-                                                        <div class="col-md-3 price">
-                                                            <span>$120</span>
+                                                            <div class="col-md-4 quantity">
+                                                                <label for="quantity">Quantity: ${p.quantity}</label>
+                                                                <input id="quantity" type="text"
+                                                                       class="form-control quantity-input">
+                                                            </div>
+                                                            <div class="col-md-3 price">
+                                                                <span>${p.list_price}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="info">
-                                                    <div class="row">
-                                                        <div class="col-md-5 product-name">
-                                                            <div class="product-name">
-                                                                <a href="#" class="black-text">Lorem Ipsum dolor</a>
-                                                                <div class="product-info">
-                                                                    <div>Display: <span class="value">5 inch</span></div>
-                                                                    <div>RAM: <span class="value">4GB</span></div>
-                                                                    <div>Memory: <span class="value">32GB</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 quantity">
-                                                            <label for="quantity">Quantity:</label>
-                                                            <input id="quantity" type="text"
-                                                                   class="form-control quantity-input">
-                                                        </div>
-                                                        <div class="col-md-3 price">
-                                                            <span>$120</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="info">
-                                                    <div class="row">
-                                                        <div class="col-md-5 product-name">
-                                                            <div class="product-name">
-                                                                <a href="#" class="black-text">Lorem Ipsum dolor</a>
-                                                                <div class="product-info">
-                                                                    <div>Display: <span class="value">5 inch</span></div>
-                                                                    <div>RAM: <span class="value">4GB</span></div>
-                                                                    <div>Memory: <span class="value">32GB</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 quantity">
-                                                            <label for="quantity">Quantity:</label>
-                                                            <input id="quantity" type="text"
-                                                                   class="form-control quantity-input">
-                                                        </div>
-                                                        <div class="col-md-3 price">
-                                                            <span>$120</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
+                                    <!--                                    
+                                                                        <div class="product">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                    <div class="info">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-5 product-name">
+                                                                                                <div class="product-name">
+                                                                                                    <a href="#" class="black-text">Lorem Ipsum dolor</a>
+                                                                                                    <div class="product-info">
+                                                                                                        <div>Display: <span class="value">5 inch</span></div>
+                                                                                                        <div>RAM: <span class="value">4GB</span></div>
+                                                                                                        <div>Memory: <span class="value">32GB</span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-4 quantity">
+                                                                                                <label for="quantity">Quantity:</label>
+                                                                                                <input id="quantity" type="text"
+                                                                                                       class="form-control quantity-input">
+                                                                                            </div>
+                                                                                            <div class="col-md-3 price">
+                                                                                                <span>$120</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                    <div class="info">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-5 product-name">
+                                                                                                <div class="product-name">
+                                                                                                    <a href="#" class="black-text">Lorem Ipsum dolor</a>
+                                                                                                    <div class="product-info">
+                                                                                                        <div>Display: <span class="value">5 inch</span></div>
+                                                                                                        <div>RAM: <span class="value">4GB</span></div>
+                                                                                                        <div>Memory: <span class="value">32GB</span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-4 quantity">
+                                                                                                <label for="quantity">Quantity:</label>
+                                                                                                <input id="quantity" type="text"
+                                                                                                       class="form-control quantity-input">
+                                                                                            </div>
+                                                                                            <div class="col-md-3 price">
+                                                                                                <span>$120</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                    <div class="info">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-5 product-name">
+                                                                                                <div class="product-name">
+                                                                                                    <a href="#" class="black-text">Lorem Ipsum dolor</a>
+                                                                                                    <div class="product-info">
+                                                                                                        <div>Display: <span class="value">5 inch</span></div>
+                                                                                                        <div>RAM: <span class="value">4GB</span></div>
+                                                                                                        <div>Memory: <span class="value">32GB</span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-4 quantity">
+                                                                                                <label for="quantity">Quantity:</label>
+                                                                                                <input id="quantity" type="text"
+                                                                                                       class="form-control quantity-input">
+                                                                                            </div>
+                                                                                            <div class="col-md-3 price">
+                                                                                                <span>$120</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>-->
                                     <div class="btn-container">
                                         <button type="button" class="btn btn-primary btn-lg">Update</button>
                                     </div>

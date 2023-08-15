@@ -41,7 +41,7 @@ public class loginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet login</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
@@ -62,9 +62,9 @@ public class loginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
+
         request.getRequestDispatcher("login.jsp").forward(request, response);
-        
+
     }
 
     /**
@@ -81,23 +81,21 @@ public class loginController extends HttpServlet {
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         DAOCustomers daocus = new DAOCustomers();
         DAOStaffs daost = new DAOStaffs();
-        
-        
-        if(daocus.loginCustomers(username, password)){
-            session.setAttribute("customer",daocus.getCustomers(username));
+
+        if (daocus.loginCustomers(username, password)) {
+            session.setAttribute("customer", daocus.getCustomers(username));
             request.getRequestDispatcher("homeController").forward(request, response);
-        }else if(daost.loginStaffs(username, password)){
-            session.setAttribute("staff",daost.getStaffs(username));
+        } else if (daost.loginStaffs(username, password)) {
+            session.setAttribute("staff", daost.getStaffs(username));
             request.getRequestDispatcher("homeController").forward(request, response);
-        }else{
+        } else {
             request.setAttribute("errorMessage", "Invalid username or password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-        
-        
+
     }
 
     /**
