@@ -27,6 +27,7 @@ public class productDetailController extends HttpServlet {
         DAOProduct dao = new DAOProduct();
         int id = Integer.parseInt(request.getParameter("pid"));
         Product pro = dao.getProductByID(id);
+        System.out.println(pro.getBrand_name());
         request.setAttribute("pdetail", pro);
         request.getRequestDispatcher("detai.jsp").forward(request, response);
         
@@ -36,7 +37,7 @@ public class productDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**

@@ -61,7 +61,7 @@
                         <button class="btn btn-outline-dark ms-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${numOfCart}</span>
                         </button>
                     </a>
                     <div class="dropdown">
@@ -118,41 +118,41 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${listP}" var="o">
-                        
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    
-                                    
-                                    <!-- Product image-->
-                                    <div class="img-link" onclick="window.location.href = 'productDetailController?pid=${o.product_id}';">
-                                        <img class="card-img-top" src="img/bicycles.jpg" alt="" />
-                                    </div>
-                                    <!-- Product details-->
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <!-- Product name-->
-                                            <h5 class="fw-bolder">${o.product_name}</h5>
-                                            <!-- Product reviews-->
-                                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                                <div class="bi-star-fill"></div>
-                                            </div>
-                                            <!-- Product price-->
-                                            <span class="text-muted">${o.list_price}</span>
 
+                        <div class="col mb-5">
+                            <div class="card h-100">
+
+
+                                <!-- Product image-->
+                                <div class="img-link" onclick="window.location.href=`productDetailController?pid=${o.product_id}`">
+                                    <img class="card-img-top" src="img/bicycles.jpg" alt="" />
+                                </div>
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">${o.product_name}</h5>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
                                         </div>
+                                        <!-- Product price-->
+                                        <span class="text-muted">${o.list_price}</span>
+
                                     </div>
-                                    <!-- Product actions-->
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-                                        </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="addToCart?id=${o.product_id}">Add to cart</a>
                                     </div>
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </c:forEach>    
                 </div>
             </div>

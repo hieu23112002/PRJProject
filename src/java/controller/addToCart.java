@@ -4,25 +4,24 @@
  */
 package controller;
 
-import entity.Customers;
+import entity.Cart;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Vector;
-import model.DAOCustomers;
-import model.DAOStaffs;
+import model.DAOProduct;
 
 /**
  *
- * @author HIEUPC
+ * @author dmx
  */
-@WebServlet(name = "login", urlPatterns = {"/loginController"})
-public class loginController extends HttpServlet {
+public class addToCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +40,10 @@ public class loginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");
+            out.println("<title>Servlet addToCart</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet addToCart at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,9 +61,21 @@ public class loginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.getRequestDispatcher("login.jsp").forward(request, response);
-
+        HttpSession session = request.getSession();
+        Cart cart = null;
+        Object o = session.getAttribute("cart");
+        
+        if(o != null) {
+            cart = (Cart) o;
+        }
+        else {
+            cart = new Cart();
+        }        
+        // get product and put into cart
+        System.out.println("id: " + request.getParameter("id"));
+        Product product = new DAOProduct().getProductByID(Integer.parseInt(request.getParameter("id")));
+        cart.addProductToCart(product);
+        response.sendRedirect("home");
     }
 
     /**
@@ -78,24 +89,7 @@ public class loginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        DAOCustomers daocus = new DAOCustomers();
-        DAOStaffs daost = new DAOStaffs();
-
-        if (daocus.loginCustomers(username, password)) {
-            session.setAttribute("customer", daocus.getCustomers(username));
-            request.getRequestDispatcher("homeController").forward(request, response);
-        } else if (daost.loginStaffs(username, password)) {
-            session.setAttribute("staff", daost.getStaffs(username));
-            request.getRequestDispatcher("homeController").forward(request, response);
-        } else {
-            request.setAttribute("errorMessage", "Invalid username or password");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**

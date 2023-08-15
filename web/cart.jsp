@@ -43,9 +43,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="homeController">Home</a></li>
-                        <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
-                        <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
-                        </c:if>
+                            <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
+                            <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+                            </c:if>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -90,11 +90,11 @@
                         <ul class="dropdown-menu" aria-labelledby="loginRegisterDropdown">
                             <c:if test="${not empty sessionScope.customer}">
                                 <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
-                            </c:if>
-                            <c:if test="${not empty sessionScope.staff}">
+                                </c:if>
+                                <c:if test="${not empty sessionScope.staff}">
                                 <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
                                 <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
-                            </c:if>
+                                </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>
                     </div>

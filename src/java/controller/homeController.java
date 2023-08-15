@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.Cart;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.Vector;
 import model.DAOProduct;
 
@@ -22,21 +24,30 @@ import model.DAOProduct;
 @WebServlet(name = "homeController", urlPatterns = {"/homeController"})
 public class homeController extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        // init session
+        HttpSession session = request.getSession();
+
+        // create cart for user
+        
+        Cart cart = (Cart) session.getAttribute("cart");
+        
+        // show number of cart
+        request.setAttribute("numOfCart", cart.getProducts().size());
+        
+        
         DAOProduct dao = new DAOProduct();
         String caname = request.getParameter("cname");
-        if(caname == null){
+        if (caname == null) {
             caname = "Bicycles";
         }
         Vector<Product> vector = dao.getAllProduct("select * from Products");
         request.setAttribute("listP", vector);
         request.setAttribute("caname", caname);
         request.getRequestDispatcher("home.jsp").forward(request, response);
-            
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,6 +62,7 @@ public class homeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
     }
 
