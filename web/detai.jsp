@@ -103,22 +103,22 @@
                         <img src="https://m.media-amazon.com/images/I/81DPZ3XfrwL.jpg" class="border p-3">
 
                     </div>
-                    <div class="col-lg-8">
+                    
+                    <div class="col-lg-8" i>
                         <div class="right-side-pro-detail border p-3 m-0">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <span>Who What Wear</span>
-                                    <p class="m-0 p-0">Women's Velvet Dress</p>
+                                    <span>${pdetail.category_name}</span>
+                                    <p class="m-0 p-0">${pdetail.product_name}</p>
                                 </div>
                                 <div class="col-lg-12">
-                                    <p class="m-0 p-0 price-pro">$30</p>
+                                    <p class="m-0 p-0 price-pro">${pdetail.list_price}</p>
                                     <hr class="p-0 m-0">
                                 </div>
                                 <div class="col-lg-12 pt-2">
                                     <h5>Product Detail</h5>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris.</span>
+                                    <span>Discover the joy of cycling with our diverse range of bicycles, 
+                                        designed for adventure and fitness enthusiasts alike.</span>
                                     <hr class="m-0 pt-2 mt-2">
                                 </div>
                                 <!-- <div class="col-lg-12">
@@ -141,6 +141,9 @@
                             </div>
                         </div>
                     </div>
+                      
+                    
+                    
                 </div>
 
             </div>

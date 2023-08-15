@@ -124,7 +124,7 @@
                                     
                                     
                                     <!-- Product image-->
-                                    <div class="img-link" onclick="window.location.href = 'detai.jsp';">
+                                    <div class="img-link" onclick="window.location.href = 'productDetailController?pid=${o.product_id}';">
                                         <img class="card-img-top" src="img/bicycles.jpg" alt="" />
                                     </div>
                                     <!-- Product details-->

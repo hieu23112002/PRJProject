@@ -169,27 +169,27 @@ public class DAOProduct extends DBConnect {// DAO:database access object
         return vector;
     }
     
-    public Vector searchByID(int id){
-        Vector<Product> vector = new Vector<Product>();
-        String sql ="select * from Products where product_name = " + id + "";
+    public Product getProductByID(int id1){
+        Product pro = null;
+        String sql ="select * from Products where product_id = " + id1 + "";
         ResultSet rs = getData(sql);
         try {
             while(rs.next()){
                 //dataType varName = rs.getDataType(fieldName|index);
                 //int id = rs.getInt("product_id");
-                int id1 = rs.getInt(1);
+                int id = rs.getInt(1);
                 String name1 = rs.getString(2);
                 int year = rs.getInt(3);
                 double price = rs.getDouble(4);
                 String brand = rs.getString(5);
                 String category = rs.getString(6);
-                Product pro = new Product(id, name1, year, price, brand, category);
-                vector.add(pro);
+                pro = new Product(id, name1, year, price, brand, category);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return vector;
+        return pro;
     }
     
     public Vector getAllProduct(String sql){
