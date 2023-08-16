@@ -13,13 +13,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.Iterator;
 
 /**
  *
  * @author dmx
  */
-public class cartController extends HttpServlet {
+public class updateCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class cartController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet cartController</title>");
+            out.println("<title>Servlet updateCartController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet cartController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateCartController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,21 +58,7 @@ public class cartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
 
-        Iterator<Product> iterator = cart.products.iterator();
-        while (iterator.hasNext()) {
-            Product p = iterator.next();
-            if (p.getQuantity() == 0) {
-                iterator.remove(); // Xóa phần tử khi số lượng là 0
-            }
-        }
-
-        request.setAttribute("subTotal", cart.getSubTotal());
-        request.setAttribute("numOfCart", cart.getProducts().size());
-        request.setAttribute("listCart", cart.products);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     /**
@@ -87,7 +72,21 @@ public class cartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        String quantities[] = request.getParameterValues("quantity");
+        String idUpdate[] = request.getParameterValues("idUpdate");
+
+        int i = 0;
+        for (Product p : cart.products) {
+            if (p.getProduct_id() == Integer.parseInt(idUpdate[i])) {
+                p.setQuantity(Integer.parseInt(quantities[i]));
+            }
+            i++;
+        }
+        
+
+        response.sendRedirect("cart");
     }
 
     /**

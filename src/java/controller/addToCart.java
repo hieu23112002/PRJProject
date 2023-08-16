@@ -63,11 +63,27 @@ public class addToCart extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
-               
+
         // get product and put into cart
+        System.out.println("quantity: " + request.getParameter("quantity"));
         Product product = new DAOProduct().getProductByID(Integer.parseInt(request.getParameter("id")));
+        
+        if(request.getParameter("quantity") != null) {
+            product.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+        }
+        else {
+            product.setQuantity(1);
+        }
+        
         cart.addProductToCart(product);
-        request.getRequestDispatcher("home").forward(request, response);
+
+        String fromDetail = request.getParameter("detail");
+        if (fromDetail != null) {
+            session.setAttribute("pid", Integer.parseInt(request.getParameter("id")));
+            request.getRequestDispatcher("detail").forward(request, response);
+        } else {
+            request.getRequestDispatcher("home").forward(request, response);
+        }
     }
 
     /**

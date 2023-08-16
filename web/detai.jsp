@@ -47,11 +47,13 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
-                    <button class="btn btn-outline-dark ms-2">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
+                    <a href="cart">
+                        <button class="btn btn-outline-dark ms-2">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${numOfCart}</span>
+                        </button>
+                    </a>
                     <div class="dropdown">
                         <button class="btn btn-outline-dark  ms-2 dropdown-toggle" type="button" id="loginRegisterDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,12 +128,12 @@
                                 </div> -->
                                 <div class="col-lg-12">
                                     <h6>Quantity :</h6>
-                                    <input type="number" class="form-control text-center w-100" value="1" min="1">
+                                    <input type="number" class="form-control text-center w-100" name="quantity" value="1" min="1">
                                 </div>
                                 <div class="col-lg-12 mt-3">
                                     <div class="row">
-                                        <div class="col-lg-6 pb-2">
-                                            <a href="#" class="btn btn-danger w-100">Add To Cart</a>
+                                        <div class="col-lg-6 pb-2" onclick="addToCart(${pdetail.product_id})">
+                                            <a  class="btn btn-danger w-100">Add To Cart</a>
                                         </div>
                                         <div class="col-lg-6">
                                             <a href="#" class="btn btn-success w-100">Buy Now</a>
@@ -152,9 +154,11 @@
         <!-- Footer-->
 
         <!-- Bootstrap core JS-->
+        <script src="./js/cart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
     </body>
 
     <!-- Footer-->

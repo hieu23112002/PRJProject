@@ -13,21 +13,21 @@ import java.util.Vector;
  */
 public class Cart {
 
-    public Vector<Product> products;
+    public ArrayList<Product> products;
 
     public Cart() {
-        products = new Vector<>();
+        products = new ArrayList<>();
     }
 
-    public Cart(Vector<Product> products) {
+    public Cart(ArrayList<Product> products) {
         this.products = products;
     }
 
-    public Vector<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Vector<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
 
@@ -48,15 +48,29 @@ public class Cart {
         }
         return 0;
     }
-    
+
     public void addProductToCart(Product p) {
-        if (getProductById(p.getProduct_id()) != null) {
-            getProductById(p.getProduct_id()).setQuantity(getProductById(p.getProduct_id()).getQuantity() + 1);
-        } else {
-            p.setQuantity(1);
+        System.out.println("quantity from input user: " + p.getQuantity());
+        boolean found = false;
+        for (Product product : products) {
+            if (product.getProduct_id() == p.getProduct_id()) {
+                found = true;
+                product.setQuantity(product.getQuantity() + p.getQuantity());
+                System.out.println("update quantity of product: " + product.getQuantity());
+                break;
+            }
+        }
+        if (found == false) {
             products.add(p);
         }
     }
-    
-   
+
+    public int getSubTotal() {
+        int sum = 0;
+        for (Product product : products) {
+            sum += product.getList_price()*product.getQuantity();
+        }
+        return sum;
+    }
+
 }

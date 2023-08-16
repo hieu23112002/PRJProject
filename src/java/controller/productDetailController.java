@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.Cart;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.DAOProduct;
 
 /**
@@ -21,18 +23,24 @@ import model.DAOProduct;
 @WebServlet(name = "productDetailController", urlPatterns = {"/productDetailController"})
 public class productDetailController extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        request.setAttribute("numOfCart", cart.getProducts().size());
         DAOProduct dao = new DAOProduct();
-        int id = Integer.parseInt(request.getParameter("pid"));
+        int id = -1;
+        try {
+            id = Integer.parseInt(request.getParameter("pid"));
+        } catch (NumberFormatException num) {
+            id = (int) session.getAttribute("pid");
+        }
         Product pro = dao.getProductByID(id);
         System.out.println(pro.getBrand_name());
         request.setAttribute("pdetail", pro);
         request.getRequestDispatcher("detai.jsp").forward(request, response);
-        
-    }
 
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
