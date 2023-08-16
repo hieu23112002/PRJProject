@@ -32,15 +32,62 @@ public class managerCustomerController extends HttpServlet {
                 service = "display";
             }
             if (service.equals("display")) {
-                Vector<Customers> vector = dao.getAllProduct("select * from customers");
+                Vector<Customers> vector = dao.getAllCustomer("select * from customers");
                 request.setAttribute("listC", vector);
                 request.getRequestDispatcher("ManagerCustomer.jsp").forward(request, response);
             }
-            if(service.equals("insertCustomer")){
-                
+            if (service.equals("insert")) {
+                String submit = request.getParameter("submit");
+                if (submit == null) {// form chua chay show jsp
+
+                    request.getRequestDispatcher("insertCustomer.jsp").forward(request, response);
+                } else {//insert
+                    String id = request.getParameter("cid");
+                    String fname = request.getParameter("fname");
+                    String lname = request.getParameter("lname");
+                    String phone = request.getParameter("phone");
+                    String email = request.getParameter("email");
+                    String street = request.getParameter("street");
+                    String city = request.getParameter("city");
+                    String state = request.getParameter("state");
+                    String zip_code = request.getParameter("zip");
+
+                    int pid = Integer.parseInt(id);
+
+                    Customers cus = new Customers(pid, fname, lname, phone, email, street, city, state, zip_code);
+                    dao.insertCustomersByPre(cus);
+
+                    response.sendRedirect("managerCustomerController");
+                }
             }
-            if(service.equals("deleteCustomer")){
-                
+            if (service.equals("update")) {
+                String submit = request.getParameter("submit");
+                if (submit == null) {// form chua chay show jsp
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Customers cus = (Customers)dao.getAllCustomer("select * from Customers "
+                            + " where customer_id="+id).get(0);
+                    request.setAttribute("data", cus);
+                    request.getRequestDispatcher("editCustomer.jsp").forward(request, response);
+                } else {//update
+                    int id = Integer.parseInt(request.getParameter("cid"));
+                    String fname = request.getParameter("fname");
+                    String lname = request.getParameter("lname");
+                    String phone = request.getParameter("phone");
+                    String email = request.getParameter("email");
+                    String street = request.getParameter("street");
+                    String city = request.getParameter("city");
+                    String state = request.getParameter("state");
+                    String zip_code = request.getParameter("zip");
+                    
+                    Customers cus = new Customers(id, fname, lname, phone, email, street, city, state, zip_code);
+                    dao.updateCustomers(cus);
+                    response.sendRedirect("managerCustomerController");
+                }
+            }
+            if (service.equals("delete")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                dao.deleteCustomers(id);
+                response.sendRedirect("managerCustomerController");
             }
         }
     }

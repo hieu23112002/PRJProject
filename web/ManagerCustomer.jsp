@@ -107,8 +107,8 @@
                             <h2>Manage <b>Customer</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="managerCustomerController?service=insertCustomer" class="btn btn-success" data-toggle="modal"><i
-                                    class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                            <a href="managerCustomerController?service=insert" class="btn btn-success" data-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i> <span>Add New Customer</span></a>
 
                         </div>
                     </div>
@@ -143,9 +143,9 @@
                             <td>${o.zip_code}</td>
                             
                             <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
+                                <a href="managerCustomerController?service=update&id=${o.customer_id}" class="edit" data-toggle="modal"><i class="material-icons"
                                                                                                  data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="" class="delete" data-toggle="modal"><i class="material-icons"
+                                <a href="managerCustomerController?service=delete&id=${o.customer_id}" class="delete" data-toggle="modal"><i class="material-icons"
                                                                                  data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>

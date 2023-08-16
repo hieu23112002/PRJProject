@@ -144,6 +144,7 @@ public class DAOCustomers extends DBConnect {
             pre.setString(7, cus.getState());
             pre.setString(8, cus.getZip_code());
             pre.setInt(9, cus.getCustomer_id());
+            n = pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -187,7 +188,7 @@ public class DAOCustomers extends DBConnect {
         return vector;
     }
     
-    public Vector getAllProduct(String sql){
+    public Vector getAllCustomer(String sql){
         Vector<Customers> vector = new Vector<Customers>();
         try {
             
