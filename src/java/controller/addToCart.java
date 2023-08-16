@@ -19,7 +19,7 @@ import model.DAOProduct;
 
 /**
  *
- * @author dmx
+ * @author HIEUPC
  */
 public class addToCart extends HttpServlet {
 
