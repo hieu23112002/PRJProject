@@ -12,6 +12,14 @@
         <servlet-name>cartController</servlet-name>
         <servlet-class>controller.cartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>product detail</servlet-name>
+        <servlet-class>controller.productDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateCartController</servlet-name>
+        <servlet-class>controller.updateCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addToCart</servlet-name>
         <url-pattern>/addToCart</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>cartController</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>product detail</servlet-name>
+        <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateCartController</servlet-name>
+        <url-pattern>/updateCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

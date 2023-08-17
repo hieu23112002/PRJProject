@@ -13,15 +13,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Vector;
-import model.DAOProduct;
 
 /**
  *
- * @author HIEUPC
+ * @author dmx
  */
-public class addToCart extends HttpServlet {
+public class updateCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +37,10 @@ public class addToCart extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet addToCart</title>");
+            out.println("<title>Servlet updateCartController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet addToCart at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateCartController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,29 +58,7 @@ public class addToCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
 
-        // get product and put into cart
-        System.out.println("quantity: " + request.getParameter("quantity"));
-        Product product = new DAOProduct().getProductByID(Integer.parseInt(request.getParameter("id")));
-        
-        if(request.getParameter("quantity") != null) {
-            product.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-        }
-        else {
-            product.setQuantity(1);
-        }
-        
-        cart.addProductToCart(product);
-
-        String fromDetail = request.getParameter("detail");
-        if (fromDetail != null) {
-            session.setAttribute("pid", Integer.parseInt(request.getParameter("id")));
-            request.getRequestDispatcher("detail").forward(request, response);
-        } else {
-            request.getRequestDispatcher("home").forward(request, response);
-        }
     }
 
     /**
@@ -97,7 +72,21 @@ public class addToCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        String quantities[] = request.getParameterValues("quantity");
+        String idUpdate[] = request.getParameterValues("idUpdate");
+
+        int i = 0;
+        for (Product p : cart.products) {
+            if (p.getProduct_id() == Integer.parseInt(idUpdate[i])) {
+                p.setQuantity(Integer.parseInt(quantities[i]));
+            }
+            i++;
+        }
+        
+
+        response.sendRedirect("cart");
     }
 
     /**

@@ -121,39 +121,47 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-8">
                                 <div class="items">
-                                    <c:forEach items="${listCart}" var="p">
-                                        <div class="product">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="info">
-                                                        <div class="row">
-                                                            <div class="col-md-5 product-name">
-                                                                <div class="product-name">
-                                                                    <a href="#" class="black-text">${p.product_name}</a>
-                                                                    <div class="product-info">
-                                                                        <div>Display: <span class="value">5 inch</span></div>
-                                                                        <div>RAM: <span class="value">4GB</span></div>
-                                                                        <div>Memory: <span class="value">32GB</span></div>
+                                    <form action="updateCart" method="post">
+                                        <c:forEach items="${listCart}" var="p">
+                                            <div class="product">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <img class="img-fluid mx-auto d-block image" src="img/a.png">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="info">
+                                                            <div class="row">
+                                                                <div class="col-md-5 product-name">
+                                                                    <div class="product-name">
+                                                                        <a href="#" class="black-text">${p.product_name}</a>
+                                                                        <div class="product-info">
+                                                                            <div>Model Year: <span class="value">${p.model_year}</span></div>
+                                                                            <div>  Category: <span class="value">${p.category_name}</span></div>
+                                                                            <div>     Brand: <span class="value">${p.brand_name}</span></div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-4 quantity">
-                                                                <label for="quantity">Quantity: ${p.quantity}</label>
-                                                                <input id="quantity" type="text"
-                                                                       class="form-control quantity-input">
-                                                            </div>
-                                                            <div class="col-md-3 price">
-                                                                <span>${p.list_price}</span>
+                                                                <div class="col-md-4 quantity">
+                                                                    <label for="quantity">Quantity:</label>
+                                                                    <input name="idUpdate" value="${p.product_id}" style="display: none">
+                                                                    <input id="quantity" type="text"
+                                                                           class="form-control quantity-input" name="quantity" value="${p.quantity}" required>
+                                                                </div>
+                                                                <div class="col-md-3 price">
+                                                                    <span>${p.list_price}</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </c:forEach>
+
+                                        <div class="btn-container">
+                                            <button type="submit" class="btn btn-primary btn-lg">Update</button>
                                         </div>
-                                    </c:forEach>
+                                    </form>
+
                                     <!--                                    
                                                                         <div class="product">
                                                                             <div class="row">
@@ -248,9 +256,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>-->
-                                    <div class="btn-container">
-                                        <button type="button" class="btn btn-primary btn-lg">Update</button>
-                                    </div>
+
 
                                 </div>
                             </div>
@@ -258,12 +264,12 @@
                                 <div class="summary">
                                     <h3>Summary</h3>
                                     <div class="summary-item"><span class="text">Subtotal</span><span
-                                            class="price">$360</span></div>
+                                            class="price">$${subTotal}</span></div>
                                     <div class="summary-item"><span class="text">Discount</span><span
                                             class="price">$0</span></div>
                                     <div class="summary-item"><span class="text">Shipping</span><span
                                             class="price">$0</span></div>
-                                    <div class="summary-item"><span class="text">Total</span><span class="price">$360</span>
+                                    <div class="summary-item"><span class="text">Total</span><span class="price">$${subTotal}</span>
                                     </div>
                                     <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
                                 </div>
@@ -277,6 +283,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+<script src="./js/cart.js"></script>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
