@@ -144,6 +144,7 @@ public class DAOCustomers extends DBConnect {
             pre.setString(7, cus.getState());
             pre.setString(8, cus.getZip_code());
             pre.setInt(9, cus.getCustomer_id());
+            n = pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -183,6 +184,31 @@ public class DAOCustomers extends DBConnect {
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return vector;
+    }
+    
+    public Vector getAllCustomer(String sql){
+        Vector<Customers> vector = new Vector<Customers>();
+        try {
+            
+            Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                int id = rs.getInt(1);
+                String f_name = rs.getString(2);
+                String l_name = rs.getString(3);
+                String phone = rs.getString(4);
+                String email = rs.getString(5);
+                String street = rs.getString(6);
+                String city = rs.getString(7);
+                String state = rs.getString(8);
+                String zip = rs.getString(9);
+                Customers cus = new Customers(id, f_name, l_name, phone, email, street, city, state, zip);
+                vector.add(cus);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         return vector;
     }

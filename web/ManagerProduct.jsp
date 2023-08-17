@@ -30,9 +30,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="homeController">Home</a></li>
-                        <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
-                        <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
-                        </c:if>
+                            <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
+                            <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+                            </c:if>
                         <li class="nav-item"><a class="nav-link" href="signup.jsp">Signup</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -75,11 +75,11 @@
                         <ul class="dropdown-menu" aria-labelledby="loginRegisterDropdown">
                             <c:if test="${not empty sessionScope.customer}">
                                 <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
-                            </c:if>
-                            <c:if test="${not empty sessionScope.staff}">
-                                <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
-                                <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
-                            </c:if>
+                                </c:if>
+                                <c:if test="${not empty sessionScope.staff}">
+                                <li><a class="dropdown-item" href="managerProductController?service=display">Manager Product</a></li>
+                                <li><a class="dropdown-item" href="managerCustomerController?service=display">Manager Customer</a></li>
+                                </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>
                     </div>
@@ -103,147 +103,51 @@
                             <h2>Manage <b>Product</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
+                            <a href="managerProductController?service=insert" class="btn btn-success" data-toggle="modal"><i
                                     class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            
+
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
-                        <tr>
-                            <th>
-
-                            </th>
+                        <tr>                            
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Image</th>
+                            <th>Model Year</th>
                             <th>Price</th>
+                            <th>Brand</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="" var="o">
-                        <tr>
-                            <td>
-                            </td>
-                            <td>ao</td>
-                            <td>quan</td>
-                            <td>
-                                <img src="">
-                            </td>
-                            <td>1000</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                                                                                 data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="" class="delete" data-toggle="modal"><i class="material-icons"
-                                                                                 data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach items="${listP}" var="o">
+                            <tr>
+                                <td>${o.product_id}</td>                            
+                                <td>${o.product_name}</td>
+                                <td>${o.model_year}</td>                               
+                                <td>${o.list_price}</td>
+                                <td>${o.brand_name}</td>
+                                <td>${o.category_name}</td>
+                                <td>${o.quantity}</td>
+                                <td>
+                                    <a href="managerProductController?service=update&id=${o.product_id}" class="edit" data-toggle="modal"><i class="material-icons"
+                                                                                                     data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="managerProductController?service=delete&id=${o.product_id}" class="delete" data-toggle="modal"><i class="material-icons"
+                                                                                     data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 
-                
+
 
             </div>
-            <!-- add Modal HTML -->
-            <div id="addEmployeeModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Product</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input name="name" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input name="image" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input name="price" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <textarea name="title" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea name="description" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select name="category" class="form-select" aria-label="Default select example">
-
-                                        <option value="1">category</option>
-                                        <option value="2">category2</option>
-
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" class="btn btn-success" value="Add">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- edit modal -->
-            <div id="editEmployeeModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Product</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input name="name" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input name="image" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input name="price" type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <textarea name="title" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea name="description" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select name="category" class="form-select" aria-label="Default select example">
-                                        <option value="1">category</option>
-                                        <option value="2">category2</option>
-                                    </select>
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" class="btn btn-success" value="Add">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            
+            
 
 
             <!-- Bootstrap core JS-->

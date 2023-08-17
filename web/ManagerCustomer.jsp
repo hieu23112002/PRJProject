@@ -80,8 +80,8 @@
                                 <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
                             </c:if>
                             <c:if test="${not empty sessionScope.staff}">
-                                <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
-                                <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
+                                <li><a class="dropdown-item" href="managerProductController?service=display">Manager Product</a></li>
+                                <li><a class="dropdown-item" href="managerCustomerController?service=display">Manager Customer</a></li>
                             </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>
@@ -107,38 +107,45 @@
                             <h2>Manage <b>Customer</b></h2>
                         </div>
                         <div class="col-sm-6">
+                            <a href="managerCustomerController?service=insert" class="btn btn-success" data-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i> <span>Add New Customer</span></a>
+
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>                           
-                            </th>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone</th>
                             <th>Email</th>
                             <th>Street</th>
                             <th>City</th>
+                            <th>State</th>
+                            <th>Zip_code</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="" var="o">
+                    <c:forEach items="${listC}" var="o">
                         <tr>
+                            
+                            <td>${o.customer_id}</td>
+                            <td>${o.first_name}</td>
+                            <td>${o.last_name}</td>
+                            <td>${o.phone}</td>
+                            <td>${o.email}</td>
+                            <td>${o.street}</td>
+                            <td>${o.city}</td>
+                            <td>${o.state}</td>
+                            <td>${o.zip_code}</td>
+                            
                             <td>
-                            </td>
-                            <td>1</td>
-                            <td>Minh</td>
-                            <td>
-                                lekhacminhhieu@fpt.edu.vn
-                            </td>
-                            <td>1000</td>
-                            <td>beo</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
+                                <a href="managerCustomerController?service=update&id=${o.customer_id}" class="edit" data-toggle="modal"><i class="material-icons"
                                                                                                  data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="" class="delete" data-toggle="modal"><i class="material-icons"
+                                <a href="managerCustomerController?service=delete&id=${o.customer_id}" class="delete" data-toggle="modal"><i class="material-icons"
                                                                                  data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
