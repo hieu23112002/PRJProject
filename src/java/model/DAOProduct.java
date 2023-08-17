@@ -192,6 +192,19 @@ public class DAOProduct extends DBConnect {// DAO:database access object
         return pro;
     }
     
+    public Vector getField(String name) {
+        Vector<String> vector = new Vector<String>();
+        ResultSet rs = this.getData("select distinct " + name + " from Products");
+        try {
+            while (rs.next()) {
+                vector.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return vector;
+    }
+    
     public Vector getAllProduct(String sql){
         Vector<Product> vector = new Vector<Product>();
         try {

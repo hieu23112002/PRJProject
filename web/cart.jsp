@@ -92,8 +92,8 @@
                                 <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
                                 </c:if>
                                 <c:if test="${not empty sessionScope.staff}">
-                                <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
-                                <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
+                                <li><a class="dropdown-item" href="managerProductController?service=display">Manager Product</a></li>
+                                <li><a class="dropdown-item" href="managerCustomerController?service=display">Manager Customer</a></li>
                                 </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>

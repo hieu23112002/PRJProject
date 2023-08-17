@@ -75,8 +75,8 @@
                                 <li><a class="dropdown-item" href="profile.jsp">Profile</a></li>
                                 </c:if>
                                 <c:if test="${not empty sessionScope.staff}">
-                                <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
-                                <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
+                                <li><a class="dropdown-item" href="managerProductController?service=display">Manager Product</a></li>
+                                <li><a class="dropdown-item" href="managerCustomerController?service=display">Manager Customer</a></li>
                                 </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>
@@ -110,11 +110,11 @@
                         <div class="right-side-pro-detail border p-3 m-0">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <span>${pdetail.category_name}</span>
-                                    <p class="m-0 p-0">${pdetail.product_name}</p>
+                                    <span>${pdetail.getCategory_name()}</span>
+                                    <p class="m-0 p-0">${pdetail.getProduct_name()}</p>
                                 </div>
                                 <div class="col-lg-12">
-                                    <p class="m-0 p-0 price-pro">${pdetail.list_price}</p>
+                                    <p class="m-0 p-0 price-pro">${pdetail.getList_price()}</p>
                                     <hr class="p-0 m-0">
                                 </div>
                                 <div class="col-lg-12 pt-2">

@@ -7,10 +7,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.Vector;
 
-/**
- *
- * @author dmx
- */
+
 public class Cart {
 
     public ArrayList<Product> products;

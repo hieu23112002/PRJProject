@@ -53,8 +53,8 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" action="searchController" method="post">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
                     <a href="cart">
@@ -85,8 +85,8 @@
                                 <li><a class="dropdown-item" href="profileController">Profile</a></li>
                                 </c:if>
                                 <c:if test="${not empty sessionScope.staff}">
-                                <li><a class="dropdown-item" href="ManagerProduct.jsp">Manager Product</a></li>
-                                <li><a class="dropdown-item" href="ManagerCustomer.jsp">Manager Customer</a></li>
+                                <li><a class="dropdown-item" href="managerProductController?service=display">Manager Product</a></li>
+                                <li><a class="dropdown-item" href="managerCustomerController?service=display">Manager Customer</a></li>
                                 </c:if>
                             <li><a class="dropdown-item" href="logoutController">Logout</a></li>
                         </ul>
