@@ -39,25 +39,25 @@
                             </div>
 
                         </div>
-                        <form action="profileController" method="post">
+                        <form action="profileController?id=${customer.customer_id}" method="post">
                             <div class="row mt-2">
-                                <div class="col-md-6"><input type="text" class="form-control" name="fname" placeholder="first name" value="${sessionScope.customer.getFirst_name()}"></div>
-                                <div class="col-md-6"><input type="text" class="form-control" name="lname" value="${sessionScope.customer.getLast_name()}" placeholder="last name"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name="fname" placeholder="first name" value="${customer.getFirst_name()}"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name="lname" value="${customer.getLast_name()}" placeholder="last name"></div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-6"><input type="text" class="form-control" name="email" readonly placeholder="Email" value="${sessionScope.customer.getEmail()}"></div>
-                                <div class="col-md-6"><input type="text" class="form-control" name="phone" readonly value="${sessionScope.customer.getPhone()}" placeholder="Phone number"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name="email" readonly placeholder="Email" value="${customer.getEmail()}"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name="phone" readonly value="${customer.getPhone()}" placeholder="Phone number"></div>
                             </div>
 
                             <div class="row mt-3">
-                                <div class="col-md-6"><input type="text" class="form-control" name ="street" placeholder="Street" value="${sessionScope.customer.getStreet()}"></div>
-                                <div class="col-md-6"><input type="text" class="form-control" name ="city" value="${sessionScope.customer.getCity()}" placeholder="City"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name ="street" placeholder="Street" value="${customer.getStreet()}"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name ="city" value="${customer.getCity()}" placeholder="City"></div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-6"><input type="text" class="form-control" name ="state" placeholder="State" value="${sessionScope.customer.getState()}"></div>
-                                <div class="col-md-6"><input type="text" class="form-control" name="zip_code" readonly value="${sessionScope.customer.getZip_code()}" placeholder="Zip_code"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name ="state" placeholder="State" value="${customer.getState()}"></div>
+                                <div class="col-md-6"><input type="text" class="form-control" name="zip_code" readonly value="${customer.getZip_code()}" placeholder="Zip_code"></div>
                             </div>
-                            <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                            <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
                             
                         </form>
                     </div>

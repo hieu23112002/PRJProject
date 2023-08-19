@@ -17,6 +17,7 @@ public class Orders {
                    shipped_date;
     private int store_id,
                 staff_id;
+    
 
     public Orders() {
     }
@@ -31,6 +32,15 @@ public class Orders {
         this.store_id = store_id;
         this.staff_id = staff_id;
     }
+
+    public Orders(int customer_id, int order_status, String order_date) {
+        this.customer_id = customer_id;
+        this.order_status = order_status;
+        this.order_date = order_date;
+    }
+
+   
+    
 
     public int getOrder_id() {
         return order_id;

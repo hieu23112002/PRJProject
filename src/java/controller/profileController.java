@@ -57,9 +57,9 @@ public class profileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Customers cus1 = (Customers)session.getAttribute("customer");
+        HttpSession session =request.getSession();
         DAOCustomers dao = new DAOCustomers();
+        int cusid = Integer.parseInt(request.getParameter("id"));
         
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
@@ -70,8 +70,9 @@ public class profileController extends HttpServlet {
         String state = request.getParameter("state");
         String zip = request.getParameter("zip_code");
         
-        Customers cusupdate = new Customers(cus1.getCustomer_id(), fname, lname, phone, email, street, city, state, zip);
+        Customers cusupdate = new Customers(cusid, fname, lname, phone, email, street, city, state, zip);
         dao.updateCustomers(cusupdate);
+        session.setAttribute("customer", cusupdate);
         response.sendRedirect("homeController");
     }
 

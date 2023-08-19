@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.DAOProduct,entity.Product,java.sql.ResultSet"%>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="homeController">Clothes</a>
+                <a class="navbar-brand" href="homeController">Bicycles</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -60,15 +61,15 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" action="searchController?service=search" method="post">
+                        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
                     <a href="cart">
                         <button class="btn btn-outline-dark ms-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">${numOfCart}</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
                         </button>
                     </a>
                     <div class="dropdown">
@@ -121,151 +122,87 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-8">
                                 <div class="items">
-                                    <c:forEach items="${listCart}" var="p">
-                                        <div class="product">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="info">
+                                    <c:choose>
+                                        <c:when test="${empty cart}">
+                                            <h3>Nothing In The Cart</h3>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form action="updateCart" method="post">
+                                                <c:forEach items="${cart}" var="cart" >
+
+                                                    <div class="product">
                                                         <div class="row">
-                                                            <div class="col-md-5 product-name">
-                                                                <div class="product-name">
-                                                                    <a href="#" class="black-text">${p.product_name}</a>
-                                                                    <div class="product-info">
-                                                                        <div>Display: <span class="value">5 inch</span></div>
-                                                                        <div>RAM: <span class="value">4GB</span></div>
-                                                                        <div>Memory: <span class="value">32GB</span></div>
+                                                            <div class="col-md-3">
+                                                                <img class="img-fluid mx-auto d-block image" src="img/bicycles.jpg">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="info">
+                                                                    <div class="row">
+                                                                        <div class="col-md-5 product-name">
+                                                                            <div class="product-name">
+                                                                                <a href="#" class="black-text">${cart.value.product.product_name}</a>
+                                                                                <div class="product-info">
+                                                                                    <div>Model Year: <span class="value">${cart.value.product.model_year}</span></div>
+                                                                                    <div>Brand: <span class="value">${cart.value.product.brand_name}</span></div>
+                                                                                    <div>Category: <span class="value">${cart.value.product.category_name}</span></div>
+                                                                                    <div>Price: <span class="value">${cart.value.product.list_price}</span></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 quantity">
+                                                                            <label for="quantity">Quantity: </label>
+                                                                            <input name="idUpdate" value="${cart.value.product.product_id}" hidden>
+                                                                            <input id="quantity" name="quantity" type="text"
+                                                                                   value="${cart.value.quantity}" class="form-control quantity-input">
+                                                                        </div>
+                                                                        <div class="col-md-3 price">
+                                                                            <span><fmt:formatNumber value="${cart.value.list_price * cart.value.quantity}" pattern="#,##0.00" /></span>
+                                                                        </div>
+                                                                        <a href="cartController?service=delete&id=${cart.value.product.product_id}" class="delete" data-toggle="modal"><i class="material-icons"
+                                                                                                                                data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 quantity">
-                                                                <label for="quantity">Quantity: ${p.quantity}</label>
-                                                                <input id="quantity" type="text"
-                                                                       class="form-control quantity-input">
-                                                            </div>
-                                                            <div class="col-md-3 price">
-                                                                <span>${p.list_price}</span>
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                    <!--                                    
-                                                                        <div class="product">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                                                                </div>
-                                                                                <div class="col-md-8">
-                                                                                    <div class="info">
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-5 product-name">
-                                                                                                <div class="product-name">
-                                                                                                    <a href="#" class="black-text">Lorem Ipsum dolor</a>
-                                                                                                    <div class="product-info">
-                                                                                                        <div>Display: <span class="value">5 inch</span></div>
-                                                                                                        <div>RAM: <span class="value">4GB</span></div>
-                                                                                                        <div>Memory: <span class="value">32GB</span></div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-4 quantity">
-                                                                                                <label for="quantity">Quantity:</label>
-                                                                                                <input id="quantity" type="text"
-                                                                                                       class="form-control quantity-input">
-                                                                                            </div>
-                                                                                            <div class="col-md-3 price">
-                                                                                                <span>$120</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                                                                </div>
-                                                                                <div class="col-md-8">
-                                                                                    <div class="info">
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-5 product-name">
-                                                                                                <div class="product-name">
-                                                                                                    <a href="#" class="black-text">Lorem Ipsum dolor</a>
-                                                                                                    <div class="product-info">
-                                                                                                        <div>Display: <span class="value">5 inch</span></div>
-                                                                                                        <div>RAM: <span class="value">4GB</span></div>
-                                                                                                        <div>Memory: <span class="value">32GB</span></div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-4 quantity">
-                                                                                                <label for="quantity">Quantity:</label>
-                                                                                                <input id="quantity" type="text"
-                                                                                                       class="form-control quantity-input">
-                                                                                            </div>
-                                                                                            <div class="col-md-3 price">
-                                                                                                <span>$120</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <img class="img-fluid mx-auto d-block image" src="img/a.png">
-                                                                                </div>
-                                                                                <div class="col-md-8">
-                                                                                    <div class="info">
-                                                                                        <div class="row">
-                                                                                            <div class="col-md-5 product-name">
-                                                                                                <div class="product-name">
-                                                                                                    <a href="#" class="black-text">Lorem Ipsum dolor</a>
-                                                                                                    <div class="product-info">
-                                                                                                        <div>Display: <span class="value">5 inch</span></div>
-                                                                                                        <div>RAM: <span class="value">4GB</span></div>
-                                                                                                        <div>Memory: <span class="value">32GB</span></div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-4 quantity">
-                                                                                                <label for="quantity">Quantity:</label>
-                                                                                                <input id="quantity" type="text"
-                                                                                                       class="form-control quantity-input">
-                                                                                            </div>
-                                                                                            <div class="col-md-3 price">
-                                                                                                <span>$120</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>-->
-                                    <div class="btn-container">
-                                        <button type="button" class="btn btn-primary btn-lg">Update</button>
-                                    </div>
 
+                                                </c:forEach>
+
+                                                <div class="btn-container">
+                                                    <button type="submit" class="btn btn-primary btn-lg">Update</button>
+                                                </div>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-4">
                                 <div class="summary">
+
+                                    <c:set var="subtotal" value="0" />
+                                    <c:forEach items="${cart}" var="cart">
+                                        <c:set var="productTotal" value="${cart.value.list_price * cart.value.quantity}" />
+                                        <c:set var="productTotalFormatted">
+                                            <fmt:formatNumber value="${productTotal}"  pattern="#,##0.00" />
+                                        </c:set>
+                                        <c:set var="subtotalFormated" value="${subtotal + productTotal}" >
+                                            <fmt:formatNumber value="${subtotal}"  pattern="#,##0.00" />
+                                        </c:set>
+
+                                    </c:forEach>
                                     <h3>Summary</h3>
                                     <div class="summary-item"><span class="text">Subtotal</span><span
-                                            class="price">$360</span></div>
+                                            class="price">${subtotal}</span></div>
                                     <div class="summary-item"><span class="text">Discount</span><span
                                             class="price">$0</span></div>
                                     <div class="summary-item"><span class="text">Shipping</span><span
                                             class="price">$0</span></div>
-                                    <div class="summary-item"><span class="text">Total</span><span class="price">$360</span>
+                                    <div class="summary-item"><span class="text">Total</span>
+                                        <span class="price">${subtotal}</span>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                                    <br>
+                                    <a href="addOrder?totalOrder=${subtotal}" class="btn btn-primary btn-lg btn-block">Checkout</a>
+
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="homeController">Clothes</a>
+                <a class="navbar-brand" href="homeController">Bicycles</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                         <c:if test="${empty sessionScope.customer && empty sessionScope.staff }">
                         <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                         </c:if>
-                        <li class="nav-item"><a class="nav-link" href="signup.jsp">Signup</a></li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -50,9 +50,9 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
+                    <form action="searchController?service=searchCustomer" class="d-flex" method="post">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                        <button  class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
                     <button class="btn btn-outline-dark ms-2">
                         <i class="bi-cart-fill me-1"></i>

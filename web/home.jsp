@@ -23,7 +23,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="homeController">Clothes</a>
+                <a class="navbar-brand" href="homeController">Bicycles</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -53,15 +53,15 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" action="searchController" method="post">
+                    <form class="d-flex" action="searchController?service=search" method="post">
                         <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark btn-sm btn-smaller" type="submit">Search</button>
                     </form>
-                    <a href="cart">
+                    <a href="cart" >    
                         <button class="btn btn-outline-dark ms-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">${numOfCart}</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
                         </button>
                     </a>
                     <div class="dropdown">

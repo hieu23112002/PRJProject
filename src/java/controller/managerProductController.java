@@ -43,7 +43,7 @@ public class managerProductController extends HttpServlet {
             }
             if (service.equals("display")) {
                 Vector<Product> vector = dao.getAllProduct("select * from Products");
-                request.setAttribute("listP", vector);
+                request.setAttribute("listPro", vector);
                 request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
             }
             if(service.equals("insert")){

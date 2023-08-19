@@ -16,17 +16,12 @@ public class Product {
     private double list_price;
     private String brand_name;
     private String category_name;
-    private int quantity;
+    
 
-    public Product(int product_id, String product_name, int model_year, double list_price, String brand_name, String category_name, int quantity) {
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.model_year = model_year;
-        this.list_price = list_price;
-        this.brand_name = brand_name;
-        this.category_name = category_name;
-        this.quantity = quantity;
-    }
+    
+    
+
+   
 
     public Product() {
     }
@@ -52,13 +47,7 @@ public class Product {
         return product_name;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+   
 
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
@@ -95,6 +84,7 @@ public class Product {
     public void setCategory_name(String category_name) {
         this.category_name = category_name;
     }
+    
 
     @Override
     public String toString() {

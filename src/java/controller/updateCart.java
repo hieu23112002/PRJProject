@@ -4,8 +4,7 @@
  */
 package controller;
 
-
-import entity.Product;
+import entity.Order_items;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,40 +13,48 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Vector;
-import model.DAOProduct;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  *
  * @author HIEUPC
  */
-@WebServlet(name = "homeController", urlPatterns = {"/homeController"})
-public class homeController extends HttpServlet {
+@WebServlet(name = "updateCart", urlPatterns = {"/updateCart"})
+public class updateCart extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        // init session
         HttpSession session = request.getSession();
+        
+        Object O = session.getAttributeNames();
+        
 
-        DAOProduct dao = new DAOProduct();
-        String caname = request.getParameter("cname");
-        if (caname == null) {
-            caname = "Bicycles";
-        }
-        Vector<Product> vector = dao.getAllProduct("select * from Products");
-        request.setAttribute("listP", vector);
-        request.setAttribute("caname", caname);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-
+        response.sendRedirect("cart.jsp");
     }
 
-    
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         processRequest(request, response);
     }
 

@@ -12,7 +12,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.Vector;
+import model.DAOCustomers;
 import model.DAOProduct;
 
 /**
@@ -26,11 +28,34 @@ public class searchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DAOProduct dao = new DAOProduct();
-        String sname = request.getParameter("search");
-        Vector<Product> vector = dao.searchByName(sname);
-        request.setAttribute("listP", vector);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        String service = request.getParameter("service");
+        
+        if(service == null){
+            
+        }
+        if(service.equals("search")){
+            DAOProduct dao = new DAOProduct();
+            String search = request.getParameter("search");
+            Vector<Product> vector = dao.searchByName(search);
+            request.setAttribute("caname", "Bicycles");
+            request.setAttribute("listP", vector);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        }
+        if(service.equals("searchProduct")){
+            DAOProduct dao = new DAOProduct();
+            String search = request.getParameter("search");
+            Vector<Product> vector = dao.searchByName(search);
+            request.setAttribute("listPro", vector);
+            request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
+        }
+        if(service.equals("searchCustomer")){
+            DAOCustomers dao = new DAOCustomers();
+            String search = request.getParameter("search");
+            Vector<Product> vector = dao.searchByName(search);
+            request.setAttribute("listC", vector);
+            request.getRequestDispatcher("ManagerCustomer.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

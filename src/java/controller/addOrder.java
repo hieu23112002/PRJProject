@@ -4,87 +4,73 @@
  */
 package controller;
 
+import entity.Customers;
 import entity.Order_items;
-import entity.Product;
+import entity.Orders;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
-
-import model.DAOProduct;
+import java.util.Map.Entry;
+import model.DAOOrder_items;
+import model.DAOOrders;
+import org.apache.catalina.servlets.DefaultServlet;
 
 /**
  *
  * @author HIEUPC
  */
-public class addToCart extends HttpServlet {
+@WebServlet(name = "addOrder", urlPatterns = {"/addOrder"})
+public class addOrder extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        try ( PrintWriter out = response.getWriter()) {
-            DAOProduct dao = new DAOProduct();
-
-            int id = Integer.parseInt(request.getParameter("id"));
-            Product pro = dao.getProductByID(id);
+        DAOOrder_items dao = new DAOOrder_items();
+        DAOOrders daoOrder = new DAOOrders();
+        Object obj = session.getAttribute("cart");
+        if (obj != null) {
+            Map<String, Order_items> cart = (Map<String, Order_items>) obj;
+            Orders order = new Orders();
             
-            Object cart = session.getAttribute("cart"); //cart = Order_items
+            order.setOrder_id(1616);
+            order.setRequired_date("2023-08-18");
+            order.setStaff_id(7);
+            order.setStore_id(2);
 
-            if (cart == null) {
-                // Nếu sản phẩm không tồn tại trong session, 
-                Order_items item = new Order_items();
-                item.setProduct(pro);
-                item.setQuantity(1); // Đặt số lượng sản phẩm là 1
-                item.setList_price(pro.getList_price());
-
-                // gio hang co nhieu mat hang
-                Map<String, Order_items> items = new HashMap<>();
-
-                items.put(id + "", item); // them mat hang vao ds
-
-                session.setAttribute("cart", items);   // Thêm mat hang vào session
-
-            } else {
-                Map<String, Order_items> items = (Map<String, Order_items>) cart;
-
-                Order_items item = items.get(id + "");
-                if (item == null) {
-                    item = new Order_items(); // tao mot mat hang moi
-                    item.setProduct(pro);
-                    item.setQuantity(1);
-                    item.setList_price(pro.getList_price());
-
-                    items.put(id + "", item);
-
-                } else {
-                    item.setQuantity(item.getQuantity() + 1);
-                }
-                session.setAttribute("cart", items);
-
-            }
+            DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            order.setOrder_date(LocalDate.now().format(sdf)); // set order_date
+            
+            order.setOrder_status(1); //set order_status
+            
+            Customers cus = (Customers)session.getAttribute("customer"); //lay thong tin cus tu session
+            order.setCustomer_id(cus.getCustomer_id()); //setCustomer_id
+            
+            daoOrder.insertOrdersByPre(order);
+            
+             for(Entry<String,Order_items> entry: cart.entrySet()){
+                 Order_items items = entry.getValue();
+                 items.setOrders(order);
+                 dao.insertOrder_items(items);
+             }
+            
+            double total = Double.parseDouble(request.getParameter("totalOrder"));// lay tong totalOrder
             
             
+            session.removeAttribute("cart");
+            request.getRequestDispatcher("home").forward(request, response);
             
-            
-            response.sendRedirect("homeController");
-
+        }
+        else{
+            request.getRequestDispatcher("home").forward(request, response);
         }
     }
 
@@ -101,7 +87,6 @@ public class addToCart extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

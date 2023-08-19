@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.Vector;
 import model.DAOCustomers;
 
@@ -88,6 +89,11 @@ public class managerCustomerController extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 dao.deleteCustomers(id);
                 response.sendRedirect("managerCustomerController");
+            }
+            if(service.equals("search")){
+                HttpSession session = request.getSession();
+                String search = request.getParameter("search");
+                Vector<Customers> vector = dao.searchByName(search);
             }
         }
     }

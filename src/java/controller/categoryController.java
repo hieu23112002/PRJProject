@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.Vector;
 import model.DAOProduct;
 
@@ -24,12 +25,13 @@ public class categoryController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         DAOProduct dao = new DAOProduct();
         String cname = request.getParameter("cname");
         Vector<Product> vector = dao.getAllProduct("select * from Products where category_name ='" + cname + "'");
-        request.setAttribute("listP", vector);
-        request.setAttribute("caname", cname);
+        session.setAttribute("listP", vector);
+        session.setAttribute("caname", cname);
         request.getRequestDispatcher("home.jsp").forward(request, response);
 //      /response.sendRedirect("homeController");
     }

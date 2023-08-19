@@ -15,6 +15,8 @@ public class Order_items {
                 quantity;
     private double list_price,
                    discount;
+    private Product product;
+    private Orders orders;
 
     public Order_items() {
     }
@@ -26,6 +28,14 @@ public class Order_items {
         this.quantity = quantity;
         this.list_price = list_price;
         this.discount = discount;
+    }
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
     public int getOrder_id() {
@@ -74,6 +84,17 @@ public class Order_items {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+    public double getTotal(){
+        return this.quantity * this.list_price;
     }
 
     @Override
