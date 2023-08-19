@@ -56,8 +56,15 @@
                                 <div class="form-group">
                                     <label>Brand Name</label>
                                     <select name="brand" id="brand" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${dataB}" var="o">
-                                            <option value="${o}">${o}</option>
+                                        <c:forEach items="${dataB}" var="o">                                           
+                                            <c:choose >
+                                                <c:when test="${dataRow.brand_name eq o}">
+                                                    <option value="${o}" selected>${o}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${o}">${o}</option>
+                                                </c:otherwise>
+                                            </c:choose>                 
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -66,7 +73,14 @@
                                     <label>Category</label>
                                     <select name="category" class="form-select" aria-label="Default select example">
                                         <c:forEach items="${dataC}" var="o">
-                                            <option value="${o}">${o}</option>
+                                            <c:choose >
+                                                <c:when test="${dataRow.category_name eq o}">
+                                                    <option value="${o}" selected>${o}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${o}">${o}</option>
+                                                </c:otherwise>
+                                            </c:choose>    
                                         </c:forEach>
                                     </select>
                                 </div>

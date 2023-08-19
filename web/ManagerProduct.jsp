@@ -131,7 +131,6 @@
                                 <td>${o.list_price}</td>
                                 <td>${o.brand_name}</td>
                                 <td>${o.category_name}</td>
-                                <td>${o.quantity}</td>
                                 <td>
                                     <a href="managerProductController?service=update&id=${o.product_id}" class="edit" data-toggle="modal"><i class="material-icons"
                                                                                                      data-toggle="tooltip" title="Edit">&#xE254;</i></a>

@@ -29,6 +29,7 @@ public class managerCustomerController extends HttpServlet {
         DAOCustomers dao = new DAOCustomers();
         try ( PrintWriter out = response.getWriter()) {
             String service = request.getParameter("service");
+            System.out.println(service);
             if (service == null) {
                 service = "display";
             }
@@ -65,8 +66,8 @@ public class managerCustomerController extends HttpServlet {
                 String submit = request.getParameter("submit");
                 if (submit == null) {// form chua chay show jsp
                     int id = Integer.parseInt(request.getParameter("id"));
-                    Customers cus = (Customers)dao.getAllCustomer("select * from Customers "
-                            + " where customer_id="+id).get(0);
+                    Customers cus = (Customers) dao.getAllCustomer("select * from Customers "
+                            + " where customer_id=" + id).get(0);
                     request.setAttribute("data", cus);
                     request.getRequestDispatcher("editCustomer.jsp").forward(request, response);
                 } else {//update
@@ -79,7 +80,7 @@ public class managerCustomerController extends HttpServlet {
                     String city = request.getParameter("city");
                     String state = request.getParameter("state");
                     String zip_code = request.getParameter("zip");
-                    
+
                     Customers cus = new Customers(id, fname, lname, phone, email, street, city, state, zip_code);
                     dao.updateCustomers(cus);
                     response.sendRedirect("managerCustomerController");
@@ -90,7 +91,7 @@ public class managerCustomerController extends HttpServlet {
                 dao.deleteCustomers(id);
                 response.sendRedirect("managerCustomerController");
             }
-            if(service.equals("search")){
+            if (service.equals("search")) {
                 HttpSession session = request.getSession();
                 String search = request.getParameter("search");
                 Vector<Customers> vector = dao.searchByName(search);
